@@ -1261,13 +1261,13 @@ tableFlip = function() return("(╯°□°)╯ ︵ ┻━┻")
 checkSystem = function(vepCall, testVEP=F) {
   #check that samtools is callable, and version 1+ otherwise warning
   catLog('Testing samtools...\n')
-  a = system('samtools --version')
+  a = system('/anaconda3/bin/samtools --version')
   if ( a != 0 ) {
     catLog('\nWARNING: \'samtools --version\' failed. This is likely to cause problems downstream in variant calling. You need a system installation (outside of R) of samtools 1+ available.\n\n')
     warning('\'samtools --version\' failed. This is likely to cause problems downstream in variant calling. You need a system installation (outside of R) of samtools 1+ available.')
   }
   else {
-    ret = system('samtools --version', intern=T)
+    ret = system('/anaconda3/bin/samtools --version', intern=T)
     if ( !grepl('^samtools 1', ret[1]) ) {
       catLog('\nWARNING: samtools --version did not produce expected output \'samtools 1.x.x\'. This may cause problems in variant calling.\n\n')
       warning('samtools --version did not produce expected output \'samtools 1.x.x\'. This may cause problems in variant calling.')
@@ -1289,7 +1289,7 @@ checkSystem = function(vepCall, testVEP=F) {
       ret = system(paste0(vepCall, ' --help'), intern=T)
       if ( length(ret) < 2 || !grepl('ENSEMBL VARIANT EFFECT PREDICTOR', ret[2]) ) {
         catLog(paste0('\nWARNING: \'', vepCall, ' --help\' did not produce expected output. This may cause problems in variant annotation. VEP version 89 is suggested, although there is some backwards compatibility.\n'))
-        warning('samtools --version did not produce expected output \'samtools 1.x.x\'. This may cause problems in variant calling.')
+        warning('/anaconda3/bin/samtools --version did not produce expected output \'samtools 1.x.x\'. This may cause problems in variant calling.')
       }
       else
         catLog('Found VEP. Seems ok.\n')
