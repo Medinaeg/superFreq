@@ -12,7 +12,7 @@ bamToPileup = function(bam, fasta, positions, index, Rdirectory, BQoffset=33) {
     region = paste0(chr, ':', min(positions$start[positions$chr == chr]), '-',
       max(positions$start[positions$chr == chr]))
     write.table(positions[positions$chr == chr,c('chr', 'start')], file=posFile, sep='\t', quote=F, row.names=F, col.names=F)
-    samtoolsCall = paste0('samtools mpileup -OsB -f ', fasta, ' -r ', region, ' -l ', posFile, ' ', bam)
+    samtoolsCall = paste0('/anaconda3/bin/samtools mpileup -OsB -f ', fasta, ' -r ', region, ' -l ', posFile, ' ', bam)
     #cat('\n', samtoolsCall, '\n')
     mpileups = system(samtoolsCall, intern=T, ignore.stderr=T)
     return(mpileups)
