@@ -1289,7 +1289,7 @@ checkSystem = function(vepCall, testVEP=F) {
       ret = system(paste0(vepCall, ' --help'), intern=T)
       if ( length(ret) < 2 || !grepl('ENSEMBL VARIANT EFFECT PREDICTOR', ret[2]) ) {
         catLog(paste0('\nWARNING: \'', vepCall, ' --help\' did not produce expected output. This may cause problems in variant annotation. VEP version 89 is suggested, although there is some backwards compatibility.\n'))
-        warning('samtools --version did not produce expected output \'samtools 1.x.x\'. This may cause problems in variant calling.')
+        warning('/anaconda3/bin/samtools --version did not produce expected output \'samtools 1.x.x\'. This may cause problems in variant calling.')
       }
       else
         catLog('Found VEP. Seems ok.\n')
